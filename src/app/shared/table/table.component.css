@@ -1,0 +1,44 @@
+.spinner{
+    position: absolute;
+    left: 50%;
+    top: 20rem;
+    transform: translate(-50%,-50%);
+}
+
+mat-paginator {
+    position: relative;
+    background-color: transparent !important;
+    flex: 0 0 auto;
+    font-family: fantasy;
+}
+
+th,td{
+    padding: 0 1rem 0 1rem !important;
+    text-align: center !important;
+    font-size: 0.75em;
+}
+
+.table-container {
+    top:1rem;
+    position: relative;
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+    flex: 1 0 20rem;
+    
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:host{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+

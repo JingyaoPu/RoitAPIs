@@ -1,0 +1,44 @@
+<mat-menu #appMenu="matMenu">
+  <ng-template matMenuContent let-name="name">
+    <button mat-menu-item routerLink="/">Settings</button>
+    <button mat-menu-item>Log off {{name}}</button>
+  </ng-template>
+</mat-menu>
+
+
+
+<mat-toolbar class="mat-elevation-z6" >
+  <button mat-icon-button (click)="emitToggleNav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="roit">Roit APIs</span>
+  <button mat-icon-button routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name: 'Bob'}">
+    <mat-icon>perm_identity</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!--
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a routerLink="/" class="navbar-brand">LOL</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+
+          <li routerLinkActive="active">
+            <a routerLink="/register">Authenticate</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/hero-list">hero List</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+-->
