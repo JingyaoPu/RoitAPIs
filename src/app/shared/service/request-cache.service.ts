@@ -9,13 +9,13 @@ export interface RequestCacheEntry {
 
 export abstract class RequestCache {
     abstract get(req: HttpRequest<any>): HttpResponse<any> | undefined;
-    abstract put(req: HttpRequest<any>, response: HttpResponse<any>): void
+    abstract put(req: HttpRequest<any>, response: HttpResponse<any>): void;
 }
 
 const maxAge = 30000; // maximum cache age (ms)
 
 @Injectable(
-    { providedIn: "root" }
+    { providedIn: 'root' }
 )
 export class RequestCacheWithMap implements RequestCache {
 

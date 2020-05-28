@@ -10,7 +10,7 @@ import { tap, map, mergeMap, catchError, startWith } from 'rxjs/operators';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  loaded: boolean = false;
+  loaded = false;
   page$: Observable<any>;
   columnsToDisplay: string[];
   matPaginatorPara = new BehaviorSubject({
@@ -25,11 +25,11 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(): void {
-    console.log("table onInit")
+    console.log('table onInit');
     this.data$.subscribe(ele => {
       if (ele.length > 0) {
-        //console.log("data" + JSON.stringify(ele));
-        this.columnsToDisplay = Object.keys(ele[0])
+        // console.log("data" + JSON.stringify(ele));
+        this.columnsToDisplay = Object.keys(ele[0]);
         this.loaded = true;
       }
     });
@@ -37,15 +37,15 @@ export class TableComponent implements OnInit {
     this.page$ = this.matPaginatorPara.pipe(
       mergeMap(para =>
         this.data$.pipe(
-          map(ele => 
+          map(ele =>
             ele.slice(para.pageIndex * para.pageSize,
             para.pageSize + para.pageIndex * para.pageSize)
           )
         )
       ),
-      catchError((err) => { console.log(err); return EMPTY })
-    )
-    
+      catchError((err) => { console.log(err); return EMPTY; })
+    );
+
 
 
 
@@ -54,7 +54,7 @@ export class TableComponent implements OnInit {
   ngAfterViewInit(){
     this.paginator.page
           .pipe(
-            tap(page => 
+            tap(page =>
               this.matPaginatorPara.next({
               pageIndex: page.pageIndex,
               pageSize: page.pageSize

@@ -9,8 +9,13 @@
   list-style-type: none;
 }
 
+button[mat-button]:hover{
+  background-color: white;
+  color: black;
+}
+
 mat-drawer {
-    
+
     width: 20%;
     background-color: black;
     color: white;
@@ -18,7 +23,7 @@ mat-drawer {
 
 mat-drawer-content{
     width: 80%;
-    
+
 }
 
 mat-drawer-container{
@@ -27,7 +32,7 @@ mat-drawer-container{
 }
 
 li button{
-    font-size: small;
+    font-size: 0.65rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color:white;
 }

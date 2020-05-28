@@ -1,4 +1,8 @@
 app-table{
-    height: 100%;
-    weight:100%;
+    height: 90%;
+    width:100%;
+}
+app-selectors{
+  height: 10%;
+  width: 100%
 }

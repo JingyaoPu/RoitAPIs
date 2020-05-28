@@ -4,7 +4,7 @@ import * as fromReducer from '../store/champion-mastery.reducer';
 import { Observable, ObjectUnsubscribedError, of, BehaviorSubject, EMPTY } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { startWith } from 'rxjs/operators';
-import { TableComponent } from '../../shared/table/table.component'
+import { TableComponent } from '../../shared/table/table.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -14,11 +14,14 @@ import { TableComponent } from '../../shared/table/table.component'
 export class HeroListComponent implements OnInit {
   data$: Observable<any>;
   loading$: Observable<boolean>;
-
+  apiParams = {
+    queue: ['RANKED_SOLO_5x5', 'RANKED_TFT', 'RANKED_FLEX_SR', 'RANKED_FLEX_TT'],
+    tier: ['CHALLENGER', 'GRANDMASTER', 'MASTER', 'DIAMOND', 'PLATINUM', 'GOLD', 'SILVER', 'BRONZE', 'IRON'],
+    division: ['I', 'II', 'III', 'IV']
+  };
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
   ngOnInit(): void {
-    
+
   }
 
   constructor(private store: Store<fromReducer.leagueState>) {
