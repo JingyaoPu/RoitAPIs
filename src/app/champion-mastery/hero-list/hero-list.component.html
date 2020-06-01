@@ -1,2 +1,4 @@
-<app-selectors [data]="apiParams"></app-selectors>
+<app-selectors [data]="apiParams" [defaultSelections]="selected$ | async"
+               (selected)="search($event)"></app-selectors>
 <app-table [data$]="data$" [loading$]="loading$"></app-table>
+

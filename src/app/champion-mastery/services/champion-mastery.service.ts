@@ -12,13 +12,18 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ChampionMasteryService {
   myDomain = 'https://br1.api.riotgames.com';
-  queue = 'RANKED_SOLO_5x5';
+  /*queue = 'RANKED_SOLO_5x5';
   tier = 'CHALLENGER';
   division = 'I';
-  url =  `/api/lol/league-exp/v4/entries/${this.queue}/${this.tier}/${this.division}`;
+  url =  `/api/lol/league-exp/v4/entries/${this.queue}/${this.tier}/${this.division}`;*/
+  url =  `/api/lol/league-exp/v4/entries`;
   getData(query: QueryData){
-    // console.log("url:"+this.url);
-    return this.http.get(this.url);
+    let urlWithQuery = this.url;
+    Object.values(query.queryData).forEach((ele) => {
+      urlWithQuery = urlWithQuery.concat(`/${ele}`);
+    });
+    console.log('url:' + urlWithQuery);
+    return this.http.get(urlWithQuery);
   }
 
   constructor(

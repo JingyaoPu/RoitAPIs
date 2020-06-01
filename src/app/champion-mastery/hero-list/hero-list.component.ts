@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import * as fromReducer from '../store/champion-mastery.reducer';
 import { Observable, ObjectUnsubscribedError, of, BehaviorSubject, EMPTY } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
-import { startWith } from 'rxjs/operators';
-import { TableComponent } from '../../shared/table/table.component';
+import {filter, map, startWith, tap} from 'rxjs/operators';
+import * as fromAction from '../store/champion-mastery.action';
 
 @Component({
   selector: 'app-hero-list',
@@ -12,22 +12,29 @@ import { TableComponent } from '../../shared/table/table.component';
   styleUrls: ['./hero-list.component.css']
 })
 export class HeroListComponent implements OnInit {
-  data$: Observable<any>;
+  data$: Observable<any> = EMPTY;
+  selected$: Observable<{[name: string]: string}>;
   loading$: Observable<boolean>;
+
   apiParams = {
     queue: ['RANKED_SOLO_5x5', 'RANKED_TFT', 'RANKED_FLEX_SR', 'RANKED_FLEX_TT'],
     tier: ['CHALLENGER', 'GRANDMASTER', 'MASTER', 'DIAMOND', 'PLATINUM', 'GOLD', 'SILVER', 'BRONZE', 'IRON'],
-    division: ['I', 'II', 'III', 'IV']
+    division: ['I', 'II', 'III', 'IV'],
   };
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
 
   }
 
+  search(selected: {[name: string]: string}){
+    // console.log('selected' + JSON.stringify(selected));
+    this.store.dispatch(fromAction.LoadingStart({queryData: {queryData: selected}}));
+  }
+
   constructor(private store: Store<fromReducer.leagueState>) {
     this.data$ = this.store.select(fromReducer.selectAllChampionMastery);
-    this.loading$ = this.store.select(fromReducer.selectLoading).pipe(
-      startWith(true)
-    );
+    this.selected$ = this.store.select(fromReducer.selectQueryData);
+    this.loading$ = this.store.select(fromReducer.selectLoading);
    }
 }

@@ -6,7 +6,7 @@ import { HttpEvent, HttpRequest, HttpHandler } from '@angular/common/http';
 export class AuthInterceptorService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler){
     const nextReq = req.clone({
-      headers: req.headers.set('X-Riot-Token', 'RGAPI-9627f0d7-2cc4-4e69-b218-905d80cad4e8')
+      headers: req.headers.set('X-Riot-Token', 'RGAPI-0d48e721-f140-448c-b173-f666c0cdc048')
     });
     console.log('header reset with token');
     return next.handle(nextReq);

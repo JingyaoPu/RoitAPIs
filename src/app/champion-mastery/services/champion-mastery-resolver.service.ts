@@ -11,7 +11,7 @@ import * as fromReducer from '../store/champion-mastery.reducer';
 export class ChampionMasteryResolverService implements Resolve<leagueEXP_v4>{
   resolve(){
     console.log('resolving!');
-    this.store.dispatch(fromAction.LoadingStart(null));
+    //this.store.dispatch(fromAction.LoadingStart(null));
     return null;
   }
   constructor(private store: Store) { }

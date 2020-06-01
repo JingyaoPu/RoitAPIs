@@ -2,9 +2,7 @@ import { leagueEXP_v4 } from '../exp.model';
 import { createAction, props } from '@ngrx/store';
 
 export interface QueryData{
-    queue: string;
-    tier: string;
-    division: string;
+    queryData: {[name: string]: string};
 }
 
 export const LoadingStart = createAction(
@@ -14,6 +12,6 @@ export const LoadingStart = createAction(
 
 export const loadingSuccess = createAction(
     '[Champion Mastery] loading success',
-    props<{res: leagueEXP_v4[]}>()
+    props<{res: leagueEXP_v4[], queryData: QueryData}>()
 );
 

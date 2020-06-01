@@ -6,6 +6,7 @@ import * as fromActions from './champion-mastery.action';
 // tslint:disable-next-line:class-name
 export interface leagueState extends EntityState<leagueEXP_v4>{
     loading: boolean;
+    queryData: {[name: string]: string};
 }
 
 export function selectLeagueId(a: leagueEXP_v4){
@@ -30,14 +31,20 @@ export const adaptor: EntityAdapter<leagueEXP_v4> = createEntityAdapter<leagueEX
 });
 
 export const initialState: leagueState = adaptor.getInitialState({
-    loading: true
+    loading: null,
+    queryData: {}
 });
+
 
 const championMasteryReducer = createReducer(
     initialState,
-    on(fromActions.loadingSuccess, (state, { res }) => {
+    on(fromActions.loadingSuccess, (state, { res, queryData}) => {
         // console.log("success"+JSON.stringify(res));
-        return adaptor.addMany(res, {...state, loading: false});
+        return adaptor.setAll(res, {...state, loading: false, ...queryData});
+    }),
+    on(fromActions.LoadingStart, (state, {queryData}) => {
+        console.log('loadingStart received by reducer');
+        return {...state, loading: true, ...queryData};
     })
 );
 
@@ -62,6 +69,11 @@ export const selectAllChampionMastery = createSelector(
 export const selectLoading = createSelector(
     selectChampionMasteryState,
     state => state.loading
+);
+
+export const selectQueryData = createSelector(
+  selectChampionMasteryState,
+  state => state.queryData
 );
 
 export const selectChampionMasteryPage = createSelector(

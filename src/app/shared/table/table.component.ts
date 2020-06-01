@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import {Component, OnInit, ViewChild, Input, AfterViewInit} from '@angular/core';
 import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap, map, mergeMap, catchError, startWith } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { tap, map, mergeMap, catchError, startWith } from 'rxjs/operators';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit{
   loaded = false;
   page$: Observable<any>;
   columnsToDisplay: string[];
